@@ -1,5 +1,5 @@
 import { View, Text, StyleSheet, Pressable, GestureResponderEvent } from "react-native"
-import { LocalizationModel } from "../models/LocalizationModel"
+import { LocalizationModel } from "../data/models/LocalizationModel"
 
 type ListTileProps = {
     item: LocalizationModel,

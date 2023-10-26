@@ -1,9 +1,9 @@
-import { View, Text, FlatList, Pressable } from 'react-native';
+import { View, Text, FlatList } from 'react-native';
 import { styles } from '../utils/styles';
 import AppScreenContainer from '../components/AppScreenContainer';
 import AppBar from '../components/AppBar';
 import SearchInput from '../components/SearchInput';
-import { LocalizationModel } from '../models/LocalizationModel';
+import { LocalizationModel } from '../data/models/LocalizationModel';
 import { ListTile } from '../components/ListTile';
 import { MaterialBottomTabNavigationProp } from '@react-navigation/material-bottom-tabs';
 import { RouteProp, useNavigation } from '@react-navigation/native';

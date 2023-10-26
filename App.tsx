@@ -1,8 +1,8 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import MainTab from './screens/MainTab';
-import SelectedDetailsScreen from './screens/SelectedDetailsScreen';
-import { ScreenParamList } from './utils/screenParamList';
+import MainTab from './src/screens/MainTab';
+import SelectedDetailsScreen from './src/screens/SelectedDetailsScreen';
+import { ScreenParamList } from './src/utils/screenParamList';
 
 
 const Stack = createNativeStackNavigator<ScreenParamList>();
