@@ -10,6 +10,7 @@ import { RouteProp, useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { ScreenParamList } from '../utils/screenParamList';
+import { useTranslation } from 'react-i18next';
 
 type Props = {
     navigation: MaterialBottomTabNavigationProp<ScreenParamList, 'Other'>;
@@ -20,11 +21,12 @@ const list: LocalizationModel[] = require('../data/localizationList');
 
 const OtherLocationsScreen: React.FC<Props> = (props) => {
     const navigation = useNavigation<NativeStackNavigationProp<any>>();
+    const { t } = useTranslation();
 
     return <AppScreenContainer>
         <View style={styles.titleContainer}>
             <AppBar />
-            <Text style={styles.titleText}>Cities</Text>
+            <Text style={styles.titleText}>{t('common:cities')}</Text>
         </View>
         <SearchInput />
         <FlatList<LocalizationModel>

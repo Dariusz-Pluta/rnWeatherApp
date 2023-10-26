@@ -1,13 +1,16 @@
 import { View, TextInput, StyleSheet } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import { useTranslation } from 'react-i18next';
 
 
 const SearchInput = () => {
+    const { t } = useTranslation();
+
     return <View style={styles.searchContainer}>
         <Icon style={styles.searchIcon} name="search" size={20} color='white' />
         <TextInput
             style={styles.searchInput}
-            placeholder="Search city..."
+            placeholder={t('common:searchCity')}
             placeholderTextColor='white'
         />
     </View>
