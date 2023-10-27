@@ -17,7 +17,7 @@ type Props = {
     route: RouteProp<ScreenParamList, 'Other'>;
 };
 
-const list: LocalizationModel[] = require('../data/localizationList');
+const list: LocalizationModel[] = require('../data/localizationList').default;
 
 const OtherLocationsScreen: React.FC<Props> = (props) => {
     const navigation = useNavigation<NativeStackNavigationProp<any>>();

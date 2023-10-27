@@ -10,7 +10,11 @@ export class LocalizationModel {
     }
 }
 
-class LatLang {
+export class LatLang {
     lat!: number;
     lon!: number;
+
+    toString(): string {
+        return `lat: ${this.lat} lon: ${this.lon}`
+    }
 }
