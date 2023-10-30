@@ -1,13 +1,14 @@
-import { View, Text, Button } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import AppScreenContainer from '../components/AppScreenContainer';
 import AppBar from '../components/AppBar';
 import { styles } from '../utils/styles';
 import React from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { getUserPosition } from '../store/reducers';
+import { getUserPosition, getCurrentWeather } from '../store/reducers';
 import { LatLang } from '../data/models/LocalizationModel';
 import { WeatherModel } from '../data/models/weatherModel';
+import { WeatherInfo } from '../components/WeatherInfo';
 
 // TODO: success => zmien coordynaty na miejscowosc + pobierz dane na temat pogody 
 // TODO: failure => stan błędu (nie udało się pobrać lokalizacji) + przycisk odświez
@@ -15,9 +16,10 @@ import { WeatherModel } from '../data/models/weatherModel';
 
 interface HomeScreenProps {
     getUserPosition: any,
+    getCurrentWeather: any,
     loading: boolean,
-    position: LatLang | null,
-    currentWeather: WeatherModel | null,
+    position?: LatLang,
+    currentWeather?: WeatherModel,
 }
 
 interface HomeScreenState { }
@@ -31,12 +33,22 @@ class HomeScreen extends React.Component<HomeScreenProps, HomeScreenState> {
         this.props.getUserPosition();
     }
 
+    componentDidUpdate(prevProps: Readonly<HomeScreenProps>, prevState: Readonly<HomeScreenState>, snapshot?: any): void {
+        const prevPositionDifferent = prevProps.position != this.props.position;
+        const positionNotNull = this.props.position != null;
+
+        if (prevPositionDifferent && positionNotNull) {
+            this.props.getCurrentWeather(this.props.position);
+        }
+    }
+
     render(): React.ReactNode {
         return (
             <AppScreenContainer>
                 <View style={styles.titleContainer}>
                     <AppBar />
                     {this.props.loading ? <Text style={styles.titleText}>loading...</Text> : null}
+                    {this.props.currentWeather != null ? <WeatherInfo currentWeather={this.props.currentWeather} /> : null}
                 </View>
             </AppScreenContainer>
 
@@ -53,6 +65,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     getUserPosition,
+    getCurrentWeather,
 }, dispatch)
 
 export default connect(

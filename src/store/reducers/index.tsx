@@ -2,6 +2,7 @@ import { LatLang } from '../../data/models/LocalizationModel';
 import Geolocation from '@react-native-community/geolocation';
 import { GET_USER_POSITION, GET_CURRENT_WEATHER, GET_OTHER_LOCALIZATIONS, FILTER_OTHER_LOCALIZATIONS, GET_FAVORITES, ADD_FAVORITE, REMOVE_FAVORITE } from '../types';
 import WeatherRepository from '../../repositories/weatherRepository';
+import { WeatherModel } from '../../data/models/weatherModel';
 
 const initialstate = {
     loading: false,
@@ -14,7 +15,6 @@ const initialstate = {
 type Action = {
     type: string,
     payload?: any,
-    position?: any,
     loading?: boolean,
 }
 
@@ -23,7 +23,7 @@ export default (state: any = initialstate, action: Action) => {
         case GET_USER_POSITION:
             return Object.assign({}, state, {
                 loading: action.loading ?? false,
-                position: action.position,
+                position: action.payload,
             });
         case GET_CURRENT_WEATHER:
             return Object.assign({}, state, {
@@ -68,8 +68,8 @@ export const getUserPosition = () => {
 
             dispatch({
                 type: GET_USER_POSITION,
-                position: position,
-                loading: false,
+                payload: position,
+                loading: true,
             });
         }, _error => {
             dispatch({
@@ -77,6 +77,30 @@ export const getUserPosition = () => {
                 loading: false,
             });
         });
+    }
+
+}
+
+export const getCurrentWeather = (position: LatLang) => {
+    return async dispatch => {
+        dispatch({
+            type: GET_CURRENT_WEATHER,
+            loading: true,
+        });
+
+        try {
+            const result = await WeatherRepository.fetchWeatherByPosition('metric', 'pl', position);
+
+            dispatch({
+                type: GET_CURRENT_WEATHER,
+                payload: result,
+            });
+        } catch (e) {
+            dispatch({
+                type: GET_CURRENT_WEATHER,
+                loading: false,
+            });
+        }
     }
 
 }

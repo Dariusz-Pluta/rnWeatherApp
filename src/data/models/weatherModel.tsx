@@ -6,11 +6,12 @@ export class WeatherModel {
     main!: Main;
     wind!: Wind;
 
-    imageUrl(): string | null {
+    get imageUrl(): string {
+        console.log('inside getter');
         if (this.weather.length > 0) {
             return `https://openweathermap.org/img/wn/${this.weather[0].icon}@2x.png`;
         }
-        return null;
+        return '';
     }
 }
 
