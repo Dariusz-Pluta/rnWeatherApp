@@ -1,5 +1,6 @@
 import { LatLang } from "../data/models/LocalizationModel";
 import { WeatherModel } from "../data/models/weatherModel";
+import ApiHelper from "./api/apiHelper";
 
 
 class WeatherRepository {
@@ -19,7 +20,7 @@ class WeatherRepository {
 
             return result;
         } catch (e) {
-            console.log(e);
+            throw (e);
         }
     }
 }

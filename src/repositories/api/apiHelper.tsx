@@ -2,7 +2,7 @@
 
 const baseUrl = 'https://api.openweathermap.org';
 
-class ApiHelper {
+export default class ApiHelper {
     static async fetchData(path: string) {
         try {
             const response = await fetch(baseUrl + path);

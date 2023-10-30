@@ -8,6 +8,7 @@ import FavoritesScreen from './FavoritesScreen';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RouteProp } from '@react-navigation/native';
 import { ScreenParamList } from '../utils/screenParamList';
+import React from 'react';
 
 export type Props = {
     navigation: NativeStackNavigationProp<ScreenParamList, 'MainTab'>;
