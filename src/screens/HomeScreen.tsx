@@ -5,8 +5,9 @@ import { styles } from '../utils/styles';
 import React from 'react';
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
-import { getUserPosition, getCurrentWeather } from '../store/reducers';
+import { getUserPosition } from '../store/reducers';
 import { LatLang } from '../data/models/LocalizationModel';
+import { WeatherModel } from '../data/models/weatherModel';
 
 // TODO: success => zmien coordynaty na miejscowosc + pobierz dane na temat pogody 
 // TODO: failure => stan błędu (nie udało się pobrać lokalizacji) + przycisk odświez
@@ -52,7 +53,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => bindActionCreators({
     getUserPosition,
-    getCurrentWeather,
 }, dispatch)
 
 export default connect(
