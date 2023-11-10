@@ -16,4 +16,9 @@ export const styles = StyleSheet.create({
   appBarContainer: {
     margin: Platform.OS == 'android' ? 24 : 0,
   },
+  centerContainer: {
+    flex: 1,
+    alignContent: 'center',
+    justifyContent: 'center',
+  }
 });

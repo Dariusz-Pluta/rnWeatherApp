@@ -5,7 +5,7 @@ export const getImageUrl = (icon?: string) => {
     return '';
 }
 
-export const capitalize = (value: string) => {
+export const capitalizeFirstLetter = (value: string) => {
     let result = '';
 
     for (let index = 0; index < value.length; index++) {

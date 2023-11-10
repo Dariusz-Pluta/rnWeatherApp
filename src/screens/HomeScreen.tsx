@@ -1,4 +1,4 @@
-import { View, Text, Image } from 'react-native';
+import { View, Text, Image, ActivityIndicator } from 'react-native';
 import AppScreenContainer from '../components/AppScreenContainer';
 import AppBar from '../components/AppBar';
 import { styles } from '../utils/styles';
@@ -12,7 +12,7 @@ import { WeatherInfo } from '../components/WeatherInfo';
 
 // TODO: success => zmien coordynaty na miejscowosc + pobierz dane na temat pogody 
 // TODO: failure => stan błędu (nie udało się pobrać lokalizacji) + przycisk odświez
-// TODO: failure pobierania pogody => stan błędu (nie udało się pobrać lokalizacji) + przycisk odświez
+// TODO: failure pobierania pogody => stan błędu (nie udało się pobrać danych na temat pogody) + przycisk odświez
 
 interface HomeScreenProps {
     getUserPosition: any,
@@ -47,7 +47,10 @@ class HomeScreen extends React.Component<HomeScreenProps, HomeScreenState> {
             <AppScreenContainer>
                 <View style={styles.titleContainer}>
                     <AppBar />
-                    {this.props.loading ? <Text style={styles.titleText}>loading...</Text> : null}
+                    {this.props.loading ?
+                        <View style={styles.centerContainer}>
+                            <ActivityIndicator color={'#FFC107'} />
+                        </View> : null}
                     {this.props.currentWeather != null ? <WeatherInfo currentWeather={this.props.currentWeather} /> : null}
                 </View>
             </AppScreenContainer>
